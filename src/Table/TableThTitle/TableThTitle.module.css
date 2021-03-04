@@ -1,0 +1,25 @@
+.TableThTitle {
+    font-size: 1.1rem;
+    padding: 8px;
+    background-color: rgb(172, 174, 194);
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background-color 300ms ease;
+}
+
+.TableThTitle:hover {
+    background-color: rgb(210, 211, 223);
+}
+
+.SvgIcon {
+    vertical-align: middle;
+}
+
+.SvgIcon.up {
+    color: #fff;
+    transform: scaleY(-1);
+}
+
+.SvgIcon.down {
+    color: #fff;
+}

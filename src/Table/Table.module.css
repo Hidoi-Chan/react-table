@@ -1,0 +1,41 @@
+.Table {
+    width: 800px;
+    margin: 20px auto 10px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.Table tr th:nth-child(1),
+.Table tr td:nth-child(1) {
+    width: 10%;
+}
+
+.Table tr th:nth-child(2),
+.Table tr td:nth-child(2) {
+    width: 22%;
+}
+
+.Table tr th:nth-child(3),
+.Table tr td:nth-child(3) {
+    width: 18%;
+}
+
+.Table tr th:nth-child(4),
+.Table tr td:nth-child(4) {
+    width: 22%;
+}
+
+.Table tr th:nth-child(5),
+.Table tr td:nth-child(5) {
+    width: 28%;
+}
+
+.Table td {
+    padding: 5px 8px;
+}
+
+.Table tbody tr:nth-child(even) {
+    background-color: #eee;
+}
