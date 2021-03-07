@@ -173,7 +173,6 @@ export default class Table extends Component {
     filterTable = event => {
 
         const header = {...this.state.header}
-        const pagination = {...this.state.pagination}
         const key = event.target.dataset.name
         header[key].inputValue = event.target.value
 
@@ -194,26 +193,38 @@ export default class Table extends Component {
                 row.shouldRender = true
             }
         })
-
-        pagination.currentPage = 1
-        pagination.allItems = countItems
+        
+        this.changePaginationPage(1, countItems)
 
         this.setState({
             table,
-            header,
-            pagination
+            header
         })
+
+        this.props.history.push('/1')
     }
 
-    changePaginationPage = page => {
+    renderPagination() {
+        return (
+            <Pagination 
+                clickHandler={this.changePaginationPage}
+                currentPage={this.state.pagination.currentPage}
+                onPage={this.state.pagination.onPage}
+                allItems={this.state.pagination.allItems}
+            />
+        )
+    }
+
+    changePaginationPage = (page, allItems = this.state.pagination.allItems) => {
         
         const pagination = {...this.state.pagination}
         pagination.currentPage = page
+        pagination.allItems = allItems
         pagination.startIndexAtPage = pagination.onPage * (pagination.currentPage - 1)
         pagination.lastIndexAtPage = (pagination.onPage * pagination.currentPage) - 1
 
-        if (pagination.lastIndexAtPage > pagination.allItems) {
-            pagination.lastIndexAtPage = pagination.allItems
+        if (pagination.lastIndexAtPage > allItems) {
+            pagination.lastIndexAtPage = allItems
         }
 
         this.setState({
@@ -240,12 +251,7 @@ export default class Table extends Component {
                         {this.renderRows()}
                     </tbody>
                 </table>
-                <Pagination 
-                    clickHandler={this.changePaginationPage}
-                    currentPage={this.state.pagination.currentPage}
-                    onPage={this.state.pagination.onPage}
-                    allItems={this.state.pagination.allItems}
-                />
+                {this.renderPagination()}
             </React.Fragment>
         )
     }
